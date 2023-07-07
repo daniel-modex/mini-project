@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+    
+
+    <script >
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDg3DbitVLIA2zIgGcmS4iKUxvu4x_DHoM",
+        authDomain: "projt23-cfd18.firebaseapp.com",
+        databaseURL: "https://projt23-cfd18-default-rtdb.firebaseio.com",
+        projectId: "projt23-cfd18",
+        storageBucket: "projt23-cfd18.appspot.com",
+        messagingSenderId: "614014971130",
+        appId: "1:614014971130:web:95c8a85cc555a6fdf76d43"
+      };
+    
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+// Get a reference to the storage service
+      console.log(firebase)
+
+      function uploadImage() {
+        const ref = firebase.storage().ref();
+        const file= document.querySelector("#photo").files[0];
+        const name= new Date()+ '-' + file.name
+        const metadata = {
+             contentType:file.type
+        }
+        const task = ref.child(name).put(file,metadata)
+
+        task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+          console.log(url)
+          const image = document.querySelector('#image')
+        image.src=url
+        })
+
+        
+
+      }
+
+      </script>
+</head>
+<body>
+  <input type="file" id="photo">
+<button id="uploadButton" onclick="uploadImage()">Upload</button>
+<img id="image" />
+
+<!-- <script src="upload.js"></script> -->
+</body>
+</html>

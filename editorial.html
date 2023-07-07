@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <script src="../assets/js/color-modes.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Editorial page</title>
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+    
+
+    <script >
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDg3DbitVLIA2zIgGcmS4iKUxvu4x_DHoM",
+        authDomain: "projt23-cfd18.firebaseapp.com",
+        databaseURL: "https://projt23-cfd18-default-rtdb.firebaseio.com",
+        projectId: "projt23-cfd18",
+        storageBucket: "projt23-cfd18.appspot.com",
+        messagingSenderId: "614014971130",
+        appId: "1:614014971130:web:95c8a85cc555a6fdf76d43"
+      };
+    
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+// Get a reference to the storage service
+      console.log(firebase)
+
+      function uploadImage() {
+        const ref = firebase.storage().ref();
+        const file= document.querySelector("#fileInput").files[0];
+        const name=  file.name
+        const metadata = {
+             contentType:file.type
+        }
+        const task = ref.child(name).put(file,metadata)
+
+        task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+          console.log(url)
+           document.getElementById('url').value=url
+        // image.value=url
+        })
+
+        
+
+      }
+
+
+
+      fwindow.history.pushState(null, null, window.location.href);
+window.onpopstate = function(event) {
+  window.history.pushState(null, null, window.location.href);
+};
+// Use the pushState method to replace the current history entry with a new one
+history.pushState(null, null, location.href);
+  
+// Add an event listener to the popstate event
+window.addEventListener('popstate', function(event) {
+  // Push a new history entry to prevent going back
+  history.pushState(null, null, location.href);
+});
+
+      </script>
+
+
+
+  <link href="assets/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .btn-bd-primary {
+      --bd-violet-bg: #712cf9;
+      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+      --bs-btn-font-weight: 600;
+      --bs-btn-color: var(--bs-white);
+      --bs-btn-bg: var(--bd-violet-bg);
+      --bs-btn-border-color: var(--bd-violet-bg);
+      --bs-btn-hover-color: var(--bs-white);
+      --bs-btn-hover-bg: #6528e0;
+      --bs-btn-hover-border-color: #6528e0;
+      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+      --bs-btn-active-color: var(--bs-btn-hover-color);
+      --bs-btn-active-bg: #5a23c8;
+      --bs-btn-active-border-color: #5a23c8;
+    }
+
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
+  </style>
+
+  
+
+
+  <!-- Custom styles for this template -->
+  <link href="assets/checkout.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/bootstrap.min.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+<link rel="manifest" href="assets/icons/site.webmanifest">
+</head>
+
+<body class="bg-body-tertiary">
+
+
+
+  <div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="assets\logo.jpg" alt="" width="72" height="57">
+        <a href="/" style="text-decoration: none;color: black;"><h1>GECBH NEWS</h1></a><br>
+        <h5>EDITORIAL PAGE</h5>
+      </div>
+
+      <div class="row g-5" style="display: grid;grid-template-columns: 1fr 6fr;">
+        <div class="none" style="width: 33%;"></div>
+
+
+        <div class="col-md-7 col-lg-8" style="width: 130%;margin-left: -60px;">
+
+          <form class="needs-validation" id="myForm" action="/create" method="post">
+            <div class="row g-3">
+
+
+
+
+              <div class="col-12">
+                <label for="Title" class="form-label">TITLE</label>
+
+
+                <input type="text" class="form-control" name="title" id="title" placeholder="title">
+
+
+              </div>
+
+              <div class="col-12">
+                <label for="desc" class="form-label">Description </label>
+                <input type="text" class="form-control" name="desc" id="desc" placeholder="enter a short description">
+
+              </div>
+
+              <div class="col-12">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" class="form-control" name="author" id="author" placeholder="Enter author's name">
+
+              </div>
+
+              <div class="col-12">
+                <label for="photo" class="form-label"> Image </label>
+              <input type="file" class="form-control" id="fileInput">
+              <input type="text" class="form-label" name="url" id="url">
+              <input type="button" value="Upload Image" onclick="uploadImage()">
+              </div>
+
+ 
+
+
+              <div class="col-md-5">
+                <label for="department" class="form-label">Department</label>
+                <select class="form-select" id="dept" name="dept">
+                  <option value="">Choose...</option>
+                  <option>Institutional</option>
+                  <option>IT</option>
+                  <option>MECH</option>
+                  <option>EEE</option>
+                  <option>CIVIL</option>
+                  <option>ECE</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a department.
+                </div>
+              </div>
+              
+
+              <div class="col-12">
+                <label for="photo" class="form-label">Content </label><br>
+                <textarea name="content" id="content" cols="130" rows="15"
+                  placeholder="enter the content of the post"></textarea>
+              </div>
+
+
+
+              <hr class="my-4">
+
+
+              <button class="w-25 btn btn-primary btn-lg" type="submit"
+                style="display: flex;justify-content: center;align-items: center;">Upload Post</button>
+              <hr class="my-4">
+          </form>
+
+          <form action="/delete" method="post">
+
+
+            <br>
+            <div class="col-12">
+              <label for="photo" class="form-label">Title to delete </label>
+              <input type="text" class="form-control" id="delete" name="delete"
+                placeholder="Enter the title of post to delete">
+            </div>
+
+            <div class="col-md-5">
+              <label for="department" class="form-label">Department</label>
+              <select class="form-select" id="dept" name="dept">
+                <option value="">Choose...</option>
+                <option>IT</option>
+                <option>MECH</option>
+                <option>EEE</option>
+                <option>CIVIL</option>
+                <option>ECE</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a department.
+              </div>
+            </div>
+            <hr class="my-4">
+            <input type="submit" class="w-25 btn btn-bd-primary btn-lg" value="Delete">
+
+          </form>
+
+
+          <!-- <form action="/hometitle" method="post">
+
+
+            <br>
+            <div class="col-12">
+              <label for="photo" class="form-label">Title to set in home page </label>
+              <input type="text" class="form-control" id="homtitle" name="homtitle"
+                placeholder="Enter the title of post to add in home page">
+            </div>
+
+            <div class="col-md-5">
+              <label for="department" class="form-label">Department</label>
+              <select class="form-select" id="dept" name="dept">
+                <option value="">Choose...</option>
+                <option>IT</option>
+                <option>MECH</option>
+                <option>EEE</option>
+                <option>CIVIL</option>
+                <option>ECE</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a department.
+              </div>
+            </div>
+            <hr class="my-4">
+            <input type="submit" class="w-25 btn btn-bd-primary btn-lg" value="SET">
+
+          </form> -->
+        </div>
+      </div>
+    </main>
+
+    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+      <p class="mb-1">&copy; GECBH NEWS</p>
+
+    </footer>
+  </div>
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- <script>
+
+    const fileInput = document.getElementById('fileInput');
+
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      const filePath = fileInput.value; // This will generally return an empty string for security reasons
+      const fileName = file.name;
+
+      console.log('File path:', filePath);
+      console.log('File name:', fileName);
+    });
+
+  </script> -->
+
+
+
+
+
+
+</body>
+
+</html>
